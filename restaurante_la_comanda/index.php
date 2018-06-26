@@ -6,6 +6,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 require '../composer/vendor/autoload.php';
 require_once 'clases/AccesoDatos.php';
 require_once 'clases/usuarioApi.php';
+require_once 'clases/empleadoApi.php';
 //require_once '/clases/AutentificadorJWT.php';
 //require_once '/clases/MWparaCORS.php';
 //require_once '/clases/MWparaAutentificar.php';
@@ -32,18 +33,31 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 /*LLAMADA A METODOS DE INSTANCIA DE UNA CLASE*/
 $app->group('/usuario', function () {
  
-  $this->get('/', \cdApi::class . ':traerTodos');//->add(\MWparaCORS::class . ':HabilitarCORSTodos');
+  //$this->get('/', \cdApi::class . ':traerTodos');//->add(\MWparaCORS::class . ':HabilitarCORSTodos');
  
-  $this->get('/{id}', \cdApi::class . ':traerUno');//->add(\MWparaCORS::class . ':HabilitarCORSTodos');
+  //$this->get('/{id}', \cdApi::class . ':traerUno');//->add(\MWparaCORS::class . ':HabilitarCORSTodos');
 
   $this->post('/', \usuarioApi::class . ':CargarUno');
 
-  $this->delete('/', \cdApi::class . ':BorrarUno');
+  //$this->delete('/', \cdApi::class . ':BorrarUno');
 
-  $this->put('/', \cdApi::class . ':ModificarUno');
+  //$this->put('/', \cdApi::class . ':ModificarUno');
      
 });//->add(\MWparaAutentificar::class . ':VerificarUsuario')->add(\MWparaCORS::class . ':HabilitarCORS8080');
 
+$app->group('/empleado', function () {
+ 
+  //$this->get('/', \cdApi::class . ':traerTodos');//->add(\MWparaCORS::class . ':HabilitarCORSTodos');
+ 
+  //$this->get('/{id}', \cdApi::class . ':traerUno');//->add(\MWparaCORS::class . ':HabilitarCORSTodos');
+
+  $this->post('/', \empleadoApi::class . ':CargarUno');
+
+  //$this->delete('/', \cdApi::class . ':BorrarUno');
+
+  //$this->put('/', \cdApi::class . ':ModificarUno');
+     
+});//->add(\MWparaAutentificar::class . ':VerificarUsuario')->add(\MWparaCORS::class . ':HabilitarCORS8080');
 
 
 $app->run();
